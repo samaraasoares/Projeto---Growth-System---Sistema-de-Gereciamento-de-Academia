@@ -3,7 +3,7 @@
 # 👥 Integrantes do Grupo
 - [Samara Fernandes Soares] - RA: [43480519]
 - [Mariana ] - RA: []
-- [Igor ] - RA: []
+- [Igor ] - RA: [41885163]
 - [Vitoria ] - RA: []
 
 
