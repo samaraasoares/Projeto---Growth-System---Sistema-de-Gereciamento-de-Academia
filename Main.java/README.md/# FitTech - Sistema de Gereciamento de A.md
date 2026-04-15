@@ -2,7 +2,7 @@
 
 # 👥 Integrantes do Grupo
 - [Samara Fernandes Soares] - RA: [43480519]
-- [Mariana ] - RA: []
+- [Mariana Moreira Barbosa ] - RA: [42880726]
 - [Igor ] - RA: [41885163]
 - [Vitoria ] - RA: []
 
