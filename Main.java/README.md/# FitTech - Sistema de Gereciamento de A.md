@@ -3,8 +3,8 @@
 # 👥 Integrantes do Grupo
 - [Samara Fernandes Soares] - RA: [43480519]
 - [Mariana Moreira Barbosa ] - RA: [42880726]
-- [Igor ] - RA: [41885163]
-- [Vitoria ] - RA: []
+- [Igor da Silva Alves Correa] - RA: [41885163]
+- [Victoria Agatha Rodrigues Fagundes] - RA: [43756042]
 
 
 ## 📋Tema Escolhido
