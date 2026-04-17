@@ -1,0 +1,20 @@
+# Ignorar arquivos compilados do Java (arquivos .class)
+*.class
+
+# Ignorar pastas de saída de compilação
+bin/
+out/
+target/
+build/
+
+# Ignorar pastas de configuração do VS Code e outras IDEs
+.vscode/
+.settings/
+.classpath
+.project
+.idea/
+*.iml
+
+# Arquivos de sistema (lixo eletrônico)
+.DS_Store
+Thumbs.db
