@@ -35,28 +35,71 @@ public class Main {
     }
 
     private static void menuAlunos() {
-        System.out.println("\n--- ALUNOS ---");
-        System.out.println("1. Cadastrar | 2. Listar | 3. Atualizar | 4. Excluir");
-        int op = Integer.parseInt(scanner.nextLine());
-        if (op == 1) {
-            System.out.print("ID: "); int id = Integer.parseInt(scanner.nextLine());
-            System.out.print("Nome: "); String nome = scanner.nextLine();
-            System.out.print("CPF: "); String cpf = scanner.nextLine();
+        int op = -1;
+        while (op != 0) {
+            System.out.println("\n--- GESTÃO DE ALUNOS ---");
+            System.out.println("1. Cadastrar | 2. Listar | 3. Atualizar | 4. Excluir | 0. Voltar");
+            System.out.print("Escolha: ");
+            try {
+                op = Integer.parseInt(scanner.nextLine());
 
-            if (ValidadorUtil.isCpfValido(cpf)) {
-                alunoDAO.inserir(new Aluno(id, nome, cpf));
-            } else {
-                System.out.println("❌ CPF Inválido.");
+                if (op == 1) {
+                    // OPERAÇÃO: CREATE
+                    System.out.print("ID: "); int id = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Nome: "); String nome = scanner.nextLine();
+                    System.out.print("CPF (apenas números): "); String cpf = scanner.nextLine();
+
+                    if (ValidadorUtil.isCpfValido(cpf)) {
+                        alunoDAO.inserir(new Aluno(id, nome, cpf));
+                    } else {
+                        System.out.println("❌ CPF Inválido.");
+                    }
+
+                } else if (op == 2) {
+                    // OPERAÇÃO: READ
+                    System.out.println("\nLista de Alunos Cadastrados:");
+                    alunoDAO.listarTodos().forEach(System.out::println);
+
+                } else if (op == 3) {
+                    // OPERAÇÃO: UPDATE
+                    System.out.print("Digite o ID do Aluno que deseja atualizar: ");
+                    int id = Integer.parseInt(scanner.nextLine());
+                    // Verificamos se o aluno existe antes de pedir os novos dados
+                    Aluno alunoExistente = alunoDAO.buscarPorId(id);
+                    if (alunoExistente != null) {
+                        System.out.print("Novo Nome: "); String nome = scanner.nextLine();
+                        System.out.print("Novo CPF: "); String cpf = scanner.nextLine();
+
+                        if (ValidadorUtil.isCpfValido(cpf)) {
+                            alunoDAO.atualizar(new Aluno(id, nome, cpf));
+                        } else {
+                            System.out.println("Novo CPF é inválido. Operação cancelada.");
+                        }
+                    } else {
+                        System.out.println("Aluno com ID " + id + " não encontrado.");
+                    }
+
+                } else if (op == 4) {
+                    // OPERAÇÃO: DELETE
+                    System.out.print("Digite o ID do Aluno que deseja excluir: ");
+                    int id = Integer.parseInt(scanner.nextLine());
+                    alunoDAO.excluir(id);
+
+                } else if (op != 0) {
+                    System.out.println("Opção inválida.");
+                }
+
+            } catch (NumberFormatException e) {
+                System.err.println("Erro: Por favor, insira apenas números para IDs e opções.");
+            } catch (Exception e) {
+                System.err.println("Ocorreu um erro inesperado: " + e.getMessage());
             }
-        } else if (op == 2) {
-            alunoDAO.listarTodos().forEach(System.out::println);
         }
-        // ... (Implementar case 3 e 4 chamando alunoDAO.atualizar e alunoDAO.excluir)
     }
 
     private static void menuAulas() {
         System.out.println("\n--- AULAS ---");
-        System.out.println("1. Nova Aula | 2. Listar");
+        System.out.println("1. Nova Aula | 2. Listar  |  0. Voltar");
         int op = Integer.parseInt(scanner.nextLine());
         if (op == 1) {
             System.out.print("ID: "); int id = Integer.parseInt(scanner.nextLine());
@@ -81,10 +124,80 @@ public class Main {
             System.out.print("ID Inscrição: "); int id = Integer.parseInt(scanner.nextLine());
             inscricaoDAO.inserir(new Inscricao(id, al, au, "08/05/2026"));
         } else {
-            System.out.println("❌ Aluno ou Aula não encontrados.");
+            System.out.println("Aluno ou Aula não encontrados.");
         }
     }
 
-    private static void menuInstrutores() { /* Lógica similar ao menuAlunos usando instrutorDAO */ }
-    private static void menuFuncionarios() { /* Lógica similar ao menuAlunos usando funcionarioDAO */ }
+    private static void menuInstrutores() {
+        int op = -1;
+        while (op != 0) {
+            System.out.println("\n--- GESTÃO DE INSTRUTORES ---");
+            System.out.println("1. Cadastrar | 2. Listar | 3. Buscar por ID | 4. Atualizar | 5. Excluir | 0. Voltar");
+            System.out.print("Escolha: ");
+            try {
+                op = Integer.parseInt(scanner.nextLine());
+                switch (op) {
+                    case 1 -> {
+                        System.out.print("ID: "); int id = Integer.parseInt(scanner.nextLine());
+                        System.out.print("Nome: "); String nome = scanner.nextLine();
+                        System.out.print("CPF (apenas números): "); String cpf = scanner.nextLine();
+                        System.out.print("Especialidade: "); String esp = scanner.nextLine();
+                        instrutorDAO.inserir(new Instrutor(id, nome, cpf, esp));
+                    }
+                    case 2 -> {
+                        System.out.println("\nLista de Instrutores:");
+                        instrutorDAO.listarTodos().forEach(System.out::println);
+                    }
+                    case 3 -> {
+                        System.out.print("Digite o ID para busca: ");
+                        int idBusca = Integer.parseInt(scanner.nextLine());
+                        Instrutor i = instrutorDAO.buscarPorId(idBusca);
+                        System.out.println(i != null ? i : "Instrutor não encontrado.");
+                    }
+                    case 4 -> {
+                        System.out.print("ID do instrutor a editar: ");
+                        int idEdit = Integer.parseInt(scanner.nextLine());
+                        System.out.print("Novo Nome: "); String nNome = scanner.nextLine();
+                        System.out.print("Novo CPF: "); String nCpf = scanner.nextLine();
+                        System.out.print("Nova Especialidade: "); String nEsp = scanner.nextLine();
+                        instrutorDAO.atualizar(new Instrutor(idEdit, nNome, nCpf, nEsp));
+                    }
+                    case 5 -> {
+                        System.out.print("ID do instrutor a excluir: ");
+                        int idEx = Integer.parseInt(scanner.nextLine());
+                        instrutorDAO.excluir(idEx);
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("Entrada inválida.");
+            }
+        }
+    }
+
+    private static void menuFuncionarios() {
+        int op = -1;
+        while (op != 0) {
+            System.out.println("\n--- GESTÃO DE FUNCIONÁRIOS ---");
+            System.out.println("1. Cadastrar | 2. Listar | 0. Voltar");
+            System.out.print("Escolha: ");
+            try {
+                op = Integer.parseInt(scanner.nextLine());
+                switch (op) {
+                    case 1 -> {
+                        System.out.print("ID: "); int id = Integer.parseInt(scanner.nextLine());
+                        System.out.print("Nome: "); String nome = scanner.nextLine();
+                        System.out.print("CPF: "); String cpf = scanner.nextLine();
+                        System.out.print("Departamento: "); String depto = scanner.nextLine();
+                        funcionarioDAO.inserir(new Funcionario(id, nome, cpf, depto));
+                    }
+                    case 2 -> {
+                        System.out.println("\nLista de Funcionários:");
+                        funcionarioDAO.listarTodos().forEach(System.out::println);
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("Entrada inválida.");
+            }
+        }
+    }
 }
