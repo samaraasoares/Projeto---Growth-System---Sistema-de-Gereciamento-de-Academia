@@ -1,3 +1,22 @@
+# Growth System - Sistema de Gereciamento de Academia
+
+# 👥 Integrantes do Grupo
+- [Samara Fernandes Soares] - RA: [43480519]
+- [Mariana Moreira Barbosa ] - RA: [42880726]
+- [Igor da Silva Alves Correa] - RA: [41885163]
+- [Victoria Agatha Rodrigues Fagundes] - RA: [43756042]
+
+
+## 📋Tema Escolhido
+Academia
+
+## Objetivo do Sistema
+O sistema de gerenciamento de academia tem como objetivo centralizar o controle de alunos, instrutores e planos relacionados à saúde e exercícios.
+
+Ele foi projetado para facilitar a rotina administrativa de uma recepção de academia, permitindo o cadastro de novos membros e o acompanhamento dos planos ativos.
+
+Além disso, o sistema organiza aulas coletivas, garantindo que o limite de capacidade seja respeitado e evitando conflitos de horários entre os alunos.
+
 # Growth System - Gestão de Academia
 
 O **Growth System** é um software de gestão de academia desenvolvido em Java com persistência em banco de dados relacional PostgreSQL. O projeto aplica conceitos avançados de Orientação a Objetos e padrões de projeto para garantir escalabilidade, segurança e organização.
