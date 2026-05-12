@@ -1,4 +1,4 @@
-package util;
+package br.com.GrowthSystem.util;
 
 public class ValidadorUtil {
     public static boolean isCpfValido(String cpf) {

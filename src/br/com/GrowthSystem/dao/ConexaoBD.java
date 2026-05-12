@@ -1,4 +1,4 @@
-package dao;
+package br.com.GrowthSystem.dao;
 import java.sql.*;
 
 public class ConexaoBD {

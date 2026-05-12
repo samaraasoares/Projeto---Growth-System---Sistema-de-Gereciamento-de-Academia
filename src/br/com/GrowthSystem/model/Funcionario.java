@@ -1,4 +1,4 @@
-package model;
+package br.com.GrowthSystem.model;
 
 public class Funcionario extends Pessoa {
     private String departamento;
@@ -7,6 +7,5 @@ public class Funcionario extends Pessoa {
         this.departamento = depto;
     }
     public String getDepartamento() { return departamento; }
-    @Override
-    public String getTipo() { return "FUNCIONÁRIO"; }
+    @Override public String getTipo() { return "FUNCIONÁRIO"; }
 }

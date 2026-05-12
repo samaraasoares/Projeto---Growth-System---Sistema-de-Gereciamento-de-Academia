@@ -1,4 +1,4 @@
-package model;
+package br.com.GrowthSystem.model;
 
 public abstract class Pessoa {
     protected int id;

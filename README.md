@@ -1,75 +1,78 @@
-# Growth System - Sistema de Gereciamento de Academia
+Growth System - Sistema de Gerenciamento de Academia
+👥 Integrantes do Grupo
+[Samara Fernandes Soares] - RA: [43480519]
 
-# 👥 Integrantes do Grupo
-- [Samara Fernandes Soares] - RA: [43480519]
-- [Mariana Moreira Barbosa ] - RA: [42880726]
-- [Igor da Silva Alves Correa] - RA: [41885163]
-- [Victoria Agatha Rodrigues Fagundes] - RA: [43756042]
+[Mariana Moreira Barbosa ] - RA: [42880726]
 
+[Igor da Silva Alves Correa] - RA: [41885163]
 
-## 📋Tema Escolhido
+[Victoria Agatha Rodrigues Fagundes] - RA: [43756042]
+
+📋 Tema Escolhido
 Academia
 
-## Objetivo do Sistema
-O sistema de gerenciamento de academia tem como objetivo centralizar o controle de alunos, instrutores e planos relacionados à saúde e exercícios.
+Objetivo do Sistema
+O sistema de gerenciamento de academia tem como objetivo centralizar o controle de alunos, instrutores e planos relacionados à saúde e exercícios. Foi projetado para facilitar a rotina administrativa, permitindo o cadastro de membros, acompanhamento de planos e organização de aulas coletivas, garantindo o respeito aos limites de capacidade.
 
-Ele foi projetado para facilitar a rotina administrativa de uma recepção de academia, permitindo o cadastro de novos membros e o acompanhamento dos planos ativos.
+Growth System - Gestão de Academia
+O Growth System é um software desenvolvido em Java com persistência em banco de dados relacional PostgreSQL. O projeto aplica conceitos avançados de Orientação a Objetos e padrões de projeto para garantir escalabilidade e organização.
 
-Além disso, o sistema organiza aulas coletivas, garantindo que o limite de capacidade seja respeitado e evitando conflitos de horários entre os alunos.
+🏗️ Arquitetura do Projeto
+O sistema segue o padrão DAO (Data Access Object), com uma estrutura de pacotes profissional:
 
-# Growth System - Gestão de Academia
+br.com.GrowthSystem.model: Entidades que representam os dados do sistema (ex: Aluno, Instrutor, Aula).
 
-O **Growth System** é um software de gestão de academia desenvolvido em Java com persistência em banco de dados relacional PostgreSQL. O projeto aplica conceitos avançados de Orientação a Objetos e padrões de projeto para garantir escalabilidade, segurança e organização.
+br.com.GrowthSystem.dao: Camada de persistência que isola todo o código SQL e JDBC.
 
-## 🏗️ Arquitetura do Projeto
+br.com.GrowthSystem.service: Camada de regras de negócio complexas, como a validação de lotação de turmas.
 
-O sistema segue o padrão **DAO (Data Access Object)**, separando as responsabilidades em pacotes específicos:
+br.com.GrowthSystem.util: Utilitários de validação (ex: CPF) e definições de interfaces.
 
-- **`model/`**: Classes de domínio (entidades) que representam os dados do sistema.
-- **`dao/`**: Camada de persistência que isola todo o código SQL e JDBC.
-- **`util/`**: Utilitários para validações de regras de negócio (ex: validação de CPF).
-- **`Main.java`**: Ponto de entrada que gerencia os menus e o fluxo do usuário.
+br.com.GrowthSystem.Main: Ponto de entrada que gerencia os menus e o fluxo do usuário.
 
-## 🚀 Requisitos Técnicos Implementados
+🚀 Requisitos Técnicos Implementados
+1. Orientação a Objetos Avançada
+Abstração: A classe Pessoa é abstract, definindo o contrato para getTipo().
 
-### 1. Orientação a Objetos Avançada
-- **Abstração**: A classe `Pessoa` é definida como `abstract`, contendo o método abstrato `getTipo()`, obrigando as classes filhas a implementarem sua própria identificação.
-- **Herança**: `Aluno`, `Instrutor` e `Funcionario` herdam atributos comuns de `Pessoa` via modificador `protected`.
-- **Polimorfismo**: Uso de sobrescrita de métodos (`@Override`) para representação textual e lógica de tipos.
+Herança: Aluno, Instrutor e Funcionario herdam de Pessoa.
 
-### 2. Persistência de Dados (JDBC + PostgreSQL)
-- **Segurança**: Uso rigoroso de `PreparedStatement` em todas as consultas para prevenir ataques de *SQL Injection*.
-- **Gestão de Recursos**: Implementação de `try-with-resources` para garantir o fechamento automático de conexões e evitar vazamentos de memória.
-- **CRUD Completo**: Todas as entidades principais possuem operações de Inserção, Consulta, Atualização e Exclusão.
+Interfaces: Implementação das interfaces Auditavel e Financeiro (ou Calculavel) para definir comportamentos específicos de registo e cálculo.
 
-### 3. Funcionalidades de Negócio
-- Cadastro e gestão de Alunos, Instrutores e Funcionários.
-- Gerenciamento de Aulas (modalidades, horários e capacidades).
-- Matrícula de Alunos em Aulas específicas com validação de chaves estrangeiras.
+Polimorfismo: Uso extensivo de @Override em métodos e interfaces.
 
-## 🛠️ Tecnologias Utilizadas
+2. Persistência de Dados (JDBC + PostgreSQL)
+Segurança: Uso de PreparedStatement para prevenir SQL Injection.
 
-- **Linguagem**: Java 17+
-- **Banco de Dados**: PostgreSQL 16
-- **Driver JDBC**: PostgreSQL JDBC Driver (42.x.x)
-- **IDE**: IntelliJ IDEA
+Gestão de Recursos: Implementação de try-with-resources para fechamento automático de conexões.
 
-## 🗄️ Estrutura do Banco de Dados
+CRUD Completo: Todas as entidades possuem operações de criação, leitura, atualização e exclusão.
 
-O banco de dados `growth_system` deve ser criado com as seguintes tabelas principais:
-- `aluno`
-- `instrutor`
-- `funcionario`
-- `aula`
-- `inscricao` (Tabela de ligação com FKs para Aluno e Aula)
+3. Regra de Negócio Complexa
+Validação de Inscrição: O sistema impede a matrícula de alunos em aulas que já atingiram a sua capacidade máxima, validando a lotação em tempo real através da camada de serviço.
 
-## 🏁 Como Executar
+Validação de CPF: Uso de utilitário para garantir a integridade dos dados de cadastro.
 
-1. Certifique-se de ter o **PostgreSQL** instalado e o banco `growth_system` criado.
-2. Execute o script SQL fornecido na documentação do projeto no seu pgAdmin.
-3. Configure as credenciais de acesso no arquivo `src/dao/ConexaoBD.java`.
-4. Adicione o driver JDBC do PostgreSQL às dependências do seu projeto no IntelliJ (*Project Structure > Modules > Dependencies*).
-5. Execute a classe `Main.java`.
+📺 Demonstração em Vídeo
+Assista à demonstração do sistema em funcionamento, incluindo a execução das operações de CRUD e a validação das regras de negócio:
 
----
-*Desenvolvido como parte das atividades avaliativas de Banco de Dados e Programação.*
+🎥 CLIQUE AQUI PARA VER O VÍDEO DE DEMONSTRAÇÃO
+
+🛠️ Tecnologias Utilizadas
+Linguagem: Java 17+
+
+Banco de Dados: PostgreSQL 16
+
+Driver JDBC: PostgreSQL JDBC Driver (42.7.10)
+
+IDE: IntelliJ IDEA
+
+🏁 Como Executar
+Certifique-se de ter o PostgreSQL instalado e o banco growth_system criado.
+
+Configure as credenciais de acesso em ConexaoBD.java.
+
+Adicione o driver JDBC às dependências do projeto (Project Structure > Dependencies).
+
+Execute a classe Main.java.
+
+Desenvolvido como parte das atividades avaliativas de Banco de Dados e Programação.
