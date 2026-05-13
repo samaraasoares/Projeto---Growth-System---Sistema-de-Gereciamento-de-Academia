@@ -1,12 +1,12 @@
 # Growth System - Sistema de Gerenciamento de Academia
 
-# 👥 Integrantes do Grupo
-- [Samara Fernandes Soares] - RA: [43480519]
-- [Mariana Moreira Barbosa] - RA: [42880726]
-- [Igor da Silva Alves Correa] - RA: [41885163]
-- [Victoria Agatha Rodrigues Fagundes] - RA: [43756042]
+# Integrantes do Grupo
+- [Samara Fernandes Soares] - RGM: [43480519]
+- [Mariana Moreira Barbosa] - RGM: [42880726]
+- [Igor da Silva Alves Correa] - RGM: [41885163]
+- [Victoria Agatha Rodrigues Fagundes] - RGM: [43756042]
 
-## 📋 Tema Escolhido
+## Tema Escolhido
 Academia
 
 ## Objetivo do Sistema
@@ -16,7 +16,7 @@ O sistema de gerenciamento de academia tem como objetivo centralizar o controle 
 
 O **Growth System** é um software de gestão desenvolvido em Java com persistência em banco de dados relacional PostgreSQL. O projeto aplica conceitos avançados de Orientação a Objetos e padrões de projeto para garantir escalabilidade e organização.
 
-## 🏗️ Arquitetura do Projeto
+## Arquitetura do Projeto
 
 O sistema segue o padrão **DAO (Data Access Object)** e uma estrutura de pacotes profissional para separação de responsabilidades:
 
@@ -26,7 +26,7 @@ O sistema segue o padrão **DAO (Data Access Object)** e uma estrutura de pacote
 - **`br.com.GrowthSystem.util`**: Utilitários para validações e definições de interfaces de comportamento.
 - **`br.com.GrowthSystem.Main`**: Ponto de entrada que gerencia os menus e o fluxo do usuário.
 
-## 🚀 Requisitos Técnicos Implementados
+## Requisitos Técnicos Implementados
 
 ### 1. Orientação a Objetos Avançada
 - **Abstração**: Classe `Pessoa` definida como `abstract`, contendo o método `getTipo()`.
@@ -43,20 +43,20 @@ O sistema segue o padrão **DAO (Data Access Object)** e uma estrutura de pacote
 - **Validação de Inscrição**: O sistema impede a matrícula de alunos em aulas que já atingiram a sua capacidade máxima, realizando a validação em tempo real na camada de serviço.
 - **Validação de Dados**: Uso de `ValidadorUtil` para assegurar a integridade de informações como o CPF no momento do cadastro.
 
-## 📺 Demonstração em Vídeo
+## Demonstração em Vídeo
 
 Assista à demonstração prática das funcionalidades do sistema, incluindo o funcionamento do CRUD e as validações de regras de negócio:
 
-[🎥 CLIQUE AQUI PARA VER O VÍDEO DE DEMONSTRAÇÃO](LINK_DO_SEU_VIDEO_AQUI)
+[CLIQUE AQUI PARA VER O VÍDEO DE DEMONSTRAÇÃO](LINK_DO_SEU_VIDEO_AQUI)
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Linguagem**: Java 17+
 - **Banco de Dados**: PostgreSQL 16
 - **Driver JDBC**: PostgreSQL JDBC Driver (42.7.10)
 - **IDE**: IntelliJ IDEA
 
-## 🏁 Como Executar
+## Como Executar
 
 1. Certifique-se de ter o **PostgreSQL** instalado e o banco `growth_system` criado.
 2. Configure as credenciais de acesso no arquivo `ConexaoBD.java`.
