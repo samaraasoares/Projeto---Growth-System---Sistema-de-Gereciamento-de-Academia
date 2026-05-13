@@ -1,13 +1,13 @@
 # Growth System - Sistema de Gereciamento de Academia
 
-# 👥 Integrantes do Grupo
-- [Samara Fernandes Soares] - RA: [43480519]
-- [Mariana Moreira Barbosa ] - RA: [42880726]
-- [Igor da Silva Alves Correa] - RA: [41885163]
-- [Victoria Agatha Rodrigues Fagundes] - RA: [43756042]
+# Integrantes do Grupo
+- [Samara Fernandes Soares] - RGM: [43480519]
+- [Mariana Moreira Barbosa ] - RGM: [42880726]
+- [Igor da Silva Alves Correa] - RGM: [41885163]
+- [Victoria Agatha Rodrigues Fagundes] - RGM: [43756042]
 
 
-## 📋Tema Escolhido
+## Tema Escolhido
 Academia
 
 ## Objetivo do Sistema
