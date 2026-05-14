@@ -82,9 +82,17 @@ public class Main {
                 if (al != null) {
                     System.out.print("Novo Nome: "); String nome = scanner.nextLine();
                     alunoDAO.atualizar(new Aluno(id, nome, al.getCpf()));
+                    System.out.println(" Aluno atualizado!");
+                } else {
+                    System.out.println(" Aluno não encontrado.");
                 }
             }
-            case 4 -> alunoDAO.excluir(Integer.parseInt(scanner.nextLine()));
+            case 4 -> {
+                System.out.print("ID do Aluno para excluir: ");
+                int id = Integer.parseInt(scanner.nextLine());
+                alunoDAO.excluir(id);
+                System.out.println(" Registro de aluno removido (se existia).");
+            }
         }
     }
 
@@ -100,6 +108,7 @@ public class Main {
                 String cpf = lerCpfValido();
                 System.out.print("Especialidade: "); String esp = scanner.nextLine();
                 instrutorDAO.inserir(new Instrutor(id, nome, cpf, esp));
+                System.out.println(" Instrutor cadastrado!");
             }
             case 2 -> {
                 System.out.println("\n--- LISTA DE INSTRUTORES ---");
@@ -117,9 +126,17 @@ public class Main {
                     System.out.print("Novo Nome: "); String nome = scanner.nextLine();
                     System.out.print("Nova Especialidade: "); String esp = scanner.nextLine();
                     instrutorDAO.atualizar(new Instrutor(id, nome, ins.getCpf(), esp));
+                    System.out.println(" Instrutor atualizado!");
+                } else {
+                    System.out.println(" Instrutor não encontrado.");
                 }
             }
-            case 4 -> instrutorDAO.excluir(Integer.parseInt(scanner.nextLine()));
+            case 4 -> {
+                System.out.print("ID do Instrutor para excluir: ");
+                int id = Integer.parseInt(scanner.nextLine());
+                instrutorDAO.excluir(id);
+                System.out.println(" Registro de instrutor removido.");
+            }
         }
     }
 
@@ -135,6 +152,7 @@ public class Main {
                 String cpf = lerCpfValido();
                 System.out.print("Departamento: "); String dep = scanner.nextLine();
                 funcionarioDAO.inserir(new Funcionario(id, nome, cpf, dep));
+                System.out.println(" Funcionário cadastrado!");
             }
             case 2 -> funcionarioDAO.listarTodos().forEach(System.out::println);
             case 3 -> {
@@ -145,9 +163,17 @@ public class Main {
                     System.out.print("Novo Nome: "); String nome = scanner.nextLine();
                     System.out.print("Novo Departamento: "); String dep = scanner.nextLine();
                     funcionarioDAO.atualizar(new Funcionario(id, nome, f.getCpf(), dep));
+                    System.out.println(" Funcionário atualizado!");
+                } else {
+                    System.out.println(" Funcionário não encontrado.");
                 }
             }
-            case 4 -> funcionarioDAO.excluir(Integer.parseInt(scanner.nextLine()));
+            case 4 -> {
+                System.out.print("ID do Funcionário para excluir: ");
+                int id = Integer.parseInt(scanner.nextLine());
+                funcionarioDAO.excluir(id);
+                System.out.println(" Registro de funcionário removido.");
+            }
         }
     }
 
@@ -163,6 +189,7 @@ public class Main {
                 System.out.print("Horário: "); String h = scanner.nextLine();
                 System.out.print("Capacidade: "); int cap = Integer.parseInt(scanner.nextLine());
                 aulaDAO.inserir(new Aula(id, mod, h, cap));
+                System.out.println(" Aula cadastrada!");
             }
             case 2 -> aulaDAO.listarTodos().forEach(a ->
                     System.out.println("ID: " + a.getId() + " | " + a.getModalidade() + " | Vagas: " + a.getCapacidadeMax()));
@@ -175,9 +202,17 @@ public class Main {
                     System.out.print("Novo Horário: "); String h = scanner.nextLine();
                     System.out.print("Nova Capacidade: "); int cap = Integer.parseInt(scanner.nextLine());
                     aulaDAO.atualizar(new Aula(id, mod, h, cap));
+                    System.out.println(" Aula atualizada!");
+                } else {
+                    System.out.println(" Aula não encontrada.");
                 }
             }
-            case 4 -> aulaDAO.excluir(Integer.parseInt(scanner.nextLine()));
+            case 4 -> {
+                System.out.print("ID da Aula para excluir: ");
+                int id = Integer.parseInt(scanner.nextLine());
+                aulaDAO.excluir(id);
+                System.out.println("✅ Aula removida do sistema.");
+            }
         }
     }
 
@@ -202,7 +237,12 @@ public class Main {
             }
             case 2 -> inscricaoDAO.listarTodas().forEach(i ->
                     System.out.println("ID: " + i.getId() + " | Aluno: " + i.getAluno().getNome() + " | Aula: " + i.getAula().getModalidade()));
-            case 3 -> inscricaoDAO.excluir(Integer.parseInt(scanner.nextLine()));
+            case 3 -> {
+                System.out.print("ID da Matrícula para excluir: ");
+                int id = Integer.parseInt(scanner.nextLine());
+                inscricaoDAO.excluir(id);
+                System.out.println(" Matrícula cancelada/excluída.");
+            }
         }
     }
 }
