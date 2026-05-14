@@ -5,7 +5,6 @@ import br.com.GrowthSystem.dao.*;
 import br.com.GrowthSystem.service.InscricaoService;
 import br.com.GrowthSystem.util.ValidadorUtil;
 import java.util.Scanner;
-import java.util.List;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
@@ -15,7 +14,6 @@ public class Main {
     private static final FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
     private static final AulaDAO aulaDAO = new AulaDAO();
     private static final InscricaoDAO inscricaoDAO = new InscricaoDAO();
-
     private static final InscricaoService service = new InscricaoService();
 
     public static void main(String[] args) {
@@ -67,22 +65,26 @@ public class Main {
                 System.out.print("Nome: "); String nome = scanner.nextLine();
                 String cpf = lerCpfValido();
                 alunoDAO.inserir(new Aluno(id, nome, cpf));
-                System.out.println("Aluno cadastrado com sucesso!");
+                System.out.println(" Aluno cadastrado!");
             }
-            case 2 -> alunoDAO.listarTodos().forEach(System.out::println);
+            case 2 -> {
+                System.out.println("\n--- LISTA DE ALUNOS ---");
+                alunoDAO.listarTodos().forEach(al -> {
+                    System.out.println(al);
+                    System.out.println("   > Mensalidade: R$ " + al.calcularValor());
+                    System.out.println("   > Último Log: " + (al.obterHistorico() != null ? al.obterHistorico() : "Sem registro"));
+                });
+            }
             case 3 -> {
-                System.out.print("ID do Aluno para atualizar: ");
+                System.out.print("ID para atualizar: ");
                 int id = Integer.parseInt(scanner.nextLine());
                 Aluno al = alunoDAO.buscarPorId(id);
                 if (al != null) {
                     System.out.print("Novo Nome: "); String nome = scanner.nextLine();
                     alunoDAO.atualizar(new Aluno(id, nome, al.getCpf()));
-                } else System.out.println("❌ Não encontrado.");
+                }
             }
-            case 4 -> {
-                System.out.print("ID para excluir: ");
-                alunoDAO.excluir(Integer.parseInt(scanner.nextLine()));
-            }
+            case 4 -> alunoDAO.excluir(Integer.parseInt(scanner.nextLine()));
         }
     }
 
@@ -98,9 +100,15 @@ public class Main {
                 String cpf = lerCpfValido();
                 System.out.print("Especialidade: "); String esp = scanner.nextLine();
                 instrutorDAO.inserir(new Instrutor(id, nome, cpf, esp));
-                System.out.println("Instrutor cadastrado com sucesso!");
             }
-            case 2 -> instrutorDAO.listarTodos().forEach(System.out::println);
+            case 2 -> {
+                System.out.println("\n--- LISTA DE INSTRUTORES ---");
+                instrutorDAO.listarTodos().forEach(ins -> {
+                    System.out.println(ins);
+                    System.out.println("   > Salário: R$ " + ins.calcularValor());
+                    System.out.println("   > Registro Auditoria: " + (ins.obterHistorico() != null ? ins.obterHistorico() : "Nenhuma ação"));
+                });
+            }
             case 3 -> {
                 System.out.print("ID para atualizar: ");
                 int id = Integer.parseInt(scanner.nextLine());
@@ -127,7 +135,6 @@ public class Main {
                 String cpf = lerCpfValido();
                 System.out.print("Departamento: "); String dep = scanner.nextLine();
                 funcionarioDAO.inserir(new Funcionario(id, nome, cpf, dep));
-                System.out.println("Funcionario cadastrado com sucesso!");
             }
             case 2 -> funcionarioDAO.listarTodos().forEach(System.out::println);
             case 3 -> {
@@ -154,9 +161,8 @@ public class Main {
                 System.out.print("ID: "); int id = Integer.parseInt(scanner.nextLine());
                 System.out.print("Modalidade: "); String mod = scanner.nextLine();
                 System.out.print("Horário: "); String h = scanner.nextLine();
-                System.out.print("Capacidade Máxima: "); int cap = Integer.parseInt(scanner.nextLine());
+                System.out.print("Capacidade: "); int cap = Integer.parseInt(scanner.nextLine());
                 aulaDAO.inserir(new Aula(id, mod, h, cap));
-                System.out.println("Aula cadastrado com sucesso!");
             }
             case 2 -> aulaDAO.listarTodos().forEach(a ->
                     System.out.println("ID: " + a.getId() + " | " + a.getModalidade() + " | Vagas: " + a.getCapacidadeMax()));
@@ -189,18 +195,14 @@ public class Main {
                     Aula au = aulaDAO.buscarPorId(idAu);
                     if (al != null && au != null) {
                         System.out.print("ID Inscrição: "); int id = Integer.parseInt(scanner.nextLine());
-                        // O Service valida a lotação da aula antes de permitir a inserção
                         service.matricular(id, al, au);
-                        System.out.println(" Concluído com sucesso!");
+                        System.out.println(" Matrícula e registro de auditoria concluídos!");
                     } else System.out.println(" Aluno ou Aula inexistente.");
-                } catch (Exception e) { System.err.println(e.getMessage()); }
+                } catch (Exception e) { System.err.println(" Erro: " + e.getMessage()); }
             }
             case 2 -> inscricaoDAO.listarTodas().forEach(i ->
                     System.out.println("ID: " + i.getId() + " | Aluno: " + i.getAluno().getNome() + " | Aula: " + i.getAula().getModalidade()));
-            case 3 -> {
-                System.out.print("ID da Inscrição para excluir: ");
-                inscricaoDAO.excluir(Integer.parseInt(scanner.nextLine()));
-            }
+            case 3 -> inscricaoDAO.excluir(Integer.parseInt(scanner.nextLine()));
         }
     }
 }
