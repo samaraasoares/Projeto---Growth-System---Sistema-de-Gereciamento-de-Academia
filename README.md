@@ -47,7 +47,7 @@ O sistema segue o padrão **DAO (Data Access Object)** e uma estrutura de pacote
 
 Assista à demonstração prática das funcionalidades do sistema, incluindo o funcionamento do CRUD e as validações de regras de negócio:
 
-[CLIQUE AQUI PARA VER O VÍDEO DE DEMONSTRAÇÃO](LINK_DO_SEU_VIDEO_AQUI)
+[CLIQUE AQUI PARA VER O VÍDEO DE DEMONSTRAÇÃO](https://youtu.be/qQKYz_4DrH8)
 
 ## Tecnologias Utilizadas
 
