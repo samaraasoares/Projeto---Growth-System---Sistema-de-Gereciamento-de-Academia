@@ -11,7 +11,10 @@ public class InscricaoService {
         if (dao.contarPorAula(au.getId()) >= au.getCapacidadeMax()) {
             throw new Exception(" Aula lotada! Limite de " + au.getCapacidadeMax() + " atingido.");
         }
-        dao.inserir(new Inscricao(id, al, au, "12/05/2026"));
-        al.registrarLog("Inscrito na aula de " + au.getModalidade());
+
+        // Persistência no Banco
+        dao.inserir(new Inscricao(id, al, au, "14/05/2026"));
+
+        al.registrarLog("Matriculado com sucesso na aula de " + au.getModalidade());
     }
 }
